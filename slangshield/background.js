@@ -57,13 +57,18 @@ async function readErrorBody(resp) {
 function buildPrompt(text, language) {
   const targetLanguage = language === "it" ? "Italian" : "English";
 
-  return `Rewrite the text into very formal corporate email language.
+  return `R
+Rewrite the text into very formal corporate email language.
 
 Critical rules:
 - Do NOT translate. Keep the same language as the input (${targetLanguage}).
 - Preserve meaning and facts. Do not add new details.
-- Keep formatting reasonable (paragraphs ok). No headings.
-- Output ONLY the rewritten text (no commentary).
+- Keep formatting reasonable (paragraphs ok). No headings, no bullet lists unless already present in the input.
+- Output ONLY the rewritten email body text (no commentary, no prefaces).
+- Do NOT output any email headers or metadata: no Subject/Oggetto, no “Subject:”, no “Oggetto:”, no “Re:”, no “R:”, no “FW/Fwd:”, no From/To/Cc/Bcc/Date.
+- If the input contains a subject line, remove it from the output and rewrite only the body content.
+- The first character of your output must be the first character of the email body (e.g., greeting or first sentence). Do not start with labels like “Subject:” / “Oggetto:”.
+
 
 TEXT:
 ${text}`;
