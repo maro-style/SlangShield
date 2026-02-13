@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 MARO
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body { width: 360px; font-family: system-ui, -apple-system, Segoe UI, Roboto; padding: 14px; }
+      label { display:block; font-size:12px; opacity:.85; margin:10px 0 6px; }
+      input, select { width: 100%; padding: 10px; box-sizing: border-box; }
+      button { width: 100%; padding: 10px; margin-top: 12px; cursor: pointer; }
+      #status { margin-top: 10px; font-size: 12px; }
+      .hint { font-size: 12px; opacity: .8; margin-top: 8px; line-height: 1.35; }
+      code { font-size: 12px; }
+      a { color: #5b6ee1; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+    </style>
+  </head>
+
+  <body>
+    <h3 style="margin:0 0 10px 0;">SlangShield</h3>
+
+    <label for="provider">Provider</label>
+    <select id="provider">
+      <option value="gemini">Gemini</option>
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic (Claude)</option>
+      <option value="openai_compat">Custom (OpenAI-compatible)</option>
+    </select>
+
+    <label for="apiKey">API key</label>
+    <input id="apiKey" type="password" placeholder="Paste your API key" autocomplete="off" />
+
+    <label for="model">Model</label>
+    <input id="model" type="text" placeholder="e.g. gemini-1.5-flash / gpt-4o-mini / claude-3-..." />
+
+    <div id="customBox" style="display:none;">
+      <label for="baseUrl">Base URL (OpenAI-compatible)</label>
+      <input id="baseUrl" type="text" placeholder="e.g. http://localhost:4000/v1" />
+      <div class="hint">Your server must expose <code>/chat/completions</code> (OpenAI-style).</div>
+    </div>
+
+    <button id="save" type="button">Save</button>
+    <div id="status"></div>
+
+    <div class="hint">
+      Shortcut: <code>Ctrl+Shift+F</code> (Win/Linux) / <code>Cmd+Shift+F</code> (Mac)
+    </div>
+
+    <div class="hint">
+      Need a Gemini key? <a id="openGeminiKey" href="#">Open Google AI Studio</a>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

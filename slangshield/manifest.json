@@ -1,0 +1,53 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 MARO
+{
+  "manifest_version": 3,
+  "name": "SlangShield",
+  "version": "0.3.0",
+  "description": "SlangShield: Because ‘hey bro’ doesn’t belong in Q4 stakeholder updates (IT/EN).",
+  "permissions": ["activeTab", "storage", "tabs"],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
+    "http://localhost/*",
+    "https://localhost/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://mail.google.com/*",
+        "*://*.outlook.com/*",
+        "*://*.outlook.live.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "formalize-text": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F",
+        "windows": "Ctrl+Shift+F",
+        "linux": "Ctrl+Shift+F"
+      },
+      "description": "Formalizza il testo nel campo attivo"
+    }
+  }
+}
